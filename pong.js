@@ -50,7 +50,7 @@ while (!engine.WindowShouldClose()) {
     if (engine.IsKeyDown(player1.upKey) && player1.y > 0) {
         player1.y -= player1.speed
     }
-    if (engine.IsKeyDown(player1.downKey) && player1.y < screen.height) {
+    if (engine.IsKeyDown(player1.downKey) && player1.y + player1.height < screen.height) {
         player1.y += player1.speed
     }
 
@@ -58,7 +58,7 @@ while (!engine.WindowShouldClose()) {
     if (engine.IsKeyDown(player2.upKey) && player2.y > 0) {
         player2.y -= player2.speed
     }
-    if (engine.IsKeyDown(player2.downKey) && player1.y < screen.height) {
+    if (engine.IsKeyDown(player2.downKey) && player2.y + player2.height < screen.height) {
         player2.y += player2.speed
     }
 
