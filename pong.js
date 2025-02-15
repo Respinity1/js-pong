@@ -29,11 +29,13 @@ const player2 = {
 }
 
 const ball = {
-    width: 5,
-    height: 5,
+    radius: 5,
     color: engine.WHITE,
+    x: 5 / 2,
+    y: 5 / 2,
+    Vx: -1,
+    Vy: 1
 }
-
 
 engine.InitWindow(screen.width, screen.height, "pong")
 engine.SetTargetFPS(60)
@@ -45,6 +47,7 @@ while (!engine.WindowShouldClose()) {
     // Draw all objects
     engine.DrawRectangle(player1.x, player1.y, player1.width, player1.height, player1.color)
     engine.DrawRectangle(player2.x, player2.y,  player2.width, player2.height, player2.color)
+    engine.DrawCircle(ball.x, ball.y, ball.radius, ball.color)
 
     // Player 1 movement
     if (engine.IsKeyDown(player1.upKey) && player1.y > 0) {
@@ -61,6 +64,20 @@ while (!engine.WindowShouldClose()) {
     if (engine.IsKeyDown(player2.downKey) && player2.y + player2.height < screen.height) {
         player2.y += player2.speed
     }
+
+    //ball velocity
+    if (engine.CheckCollisionCircleRec({x: ball.x, y: ball.y}, ball.radius, {x: player1.x, y: player1.y, width: player1.width, height: player1.height})) {
+        ball.vx *= -1
+        ball.vy *= -1
+    }
+
+    if (engine.CheckCollisionCircleRec({x: ball.x, y: ball.y}, ball.radius, {x: player2.x, y: player2.y, width: player2.width, height: player2.height})) {
+        ball.vx *= -1
+        ball.vy *= -1
+    }
+
+    ball.x = ball.x + (ball.vx * ball.speed)
+    ball.y = ball.y + (ball.vy * ball.speed)
 
     engine.EndDrawing()
 }
