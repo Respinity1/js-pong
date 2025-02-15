@@ -1,0 +1,23 @@
+{
+  "name": "js-pong",
+  "version": "1.0.0",
+  "description": "This is a simple pong game with raylib",
+  "main": "pong.js",
+  "dependencies": {
+    "raylib": "*"
+  },
+  "scripts": {
+    "start": "node pong.js", 
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Respinity1/js-pong.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Respinity1/js-pong/issues"
+  },
+  "homepage": "https://github.com/Respinity1/js-pong#readme"
+}
