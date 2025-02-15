@@ -16,7 +16,10 @@ const player1 = {
     height: 50,
     color: engine.BLUE,
     x: 0, 
-    y: screen.height / 2 - 25
+    y: screen.height / 2 - 25,
+    speed: 5,
+    upKey: 0x57,
+    downKey: 0x53
 }
 
 const player2 = {
@@ -24,7 +27,10 @@ const player2 = {
     height: 50,
     color: engine.RED,
     x: screen.width - 10,
-    y: screen.height / 2 - 25
+    y: screen.height / 2 - 25,
+    speed: 5,
+    upKey: 0x49,
+    downKey: 0x4B
 }
 
 const ball = {
@@ -42,6 +48,21 @@ while (!engine.WindowShouldClose()) {
     engine.ClearBackground(engine.BLACK)
     engine.DrawRectangle(player1.x, player1.y, player1.width, player1.height, player1.color)
     engine.DrawRectangle(player2.x, player2.y,  player2.width, player2.height, player2.color)
+
+    if (engine.IsKeyDown(player1.upKey)) {
+        player1.y -= player1.speed
+    }
+    if (engine.IsKeyDown(player1.downKey)) {
+        player1.y += player1.speed
+    }
+
+    if (engine.IsKeyDown(player2.upKey)) {
+        player2.y -= player2.speed
+    }
+    if (engine.IsKeyDown(player2.downKey)) {
+        player2.y += player2.speed
+    }
+
     engine.EndDrawing()
 }
 engine.CloseWindow()
