@@ -6,11 +6,6 @@ const screen = {
     height: 450
 }
 
-// Players
-// TODO: Incorporate x and y coords into player1, player2 and ball
-// Player1 needs to be at the bottom
-// Player2 needs to be at the top
-// Ball must start in the middle
 const player1 = {
     width: 10,
     height: 50,
@@ -18,8 +13,8 @@ const player1 = {
     x: 0, 
     y: screen.height / 2 - 25,
     speed: 5,
-    upKey: 0x57,
-    downKey: 0x53
+    upKey: 0x57, // i
+    downKey: 0x53 // k
 }
 
 const player2 = {
@@ -29,8 +24,8 @@ const player2 = {
     x: screen.width - 10,
     y: screen.height / 2 - 25,
     speed: 5,
-    upKey: 0x49,
-    downKey: 0x4B
+    upKey: 0x49, // w
+    downKey: 0x4B // s
 }
 
 const ball = {
@@ -46,20 +41,24 @@ engine.SetTargetFPS(60)
 while (!engine.WindowShouldClose()) {
     engine.BeginDrawing();
     engine.ClearBackground(engine.BLACK)
+
+    // Draw all objects
     engine.DrawRectangle(player1.x, player1.y, player1.width, player1.height, player1.color)
     engine.DrawRectangle(player2.x, player2.y,  player2.width, player2.height, player2.color)
 
-    if (engine.IsKeyDown(player1.upKey)) {
+    // Player 1 movement
+    if (engine.IsKeyDown(player1.upKey) && player1.y > 0) {
         player1.y -= player1.speed
     }
-    if (engine.IsKeyDown(player1.downKey)) {
+    if (engine.IsKeyDown(player1.downKey) && player1.y < screen.height) {
         player1.y += player1.speed
     }
 
-    if (engine.IsKeyDown(player2.upKey)) {
+    // Player 2 movement
+    if (engine.IsKeyDown(player2.upKey) && player2.y > 0) {
         player2.y -= player2.speed
     }
-    if (engine.IsKeyDown(player2.downKey)) {
+    if (engine.IsKeyDown(player2.downKey) && player1.y < screen.height) {
         player2.y += player2.speed
     }
 
